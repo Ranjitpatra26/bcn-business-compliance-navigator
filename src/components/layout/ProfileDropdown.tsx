@@ -54,7 +54,7 @@ export function ProfileDropdown({ className, ...props }: ProfileDropdownProps) {
             className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 p-1 pr-4 transition-all duration-200 hover:border-white/20 hover:bg-white/10 focus:outline-none h-10 data-open:bg-white/10 data-open:border-white/20"
           >
             <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-zinc-800/80">
-              <User className="h-4 w-4 text-white/80" />
+              <User className="h-4 w-4 text-primary" />
             </div>
             <div className="hidden sm:flex flex-col text-left">
               <span className="font-medium text-sm text-white leading-tight">
@@ -98,7 +98,7 @@ export function ProfileDropdown({ className, ...props }: ProfileDropdownProps) {
                 <DropdownMenuItem
                   key={item.label}
                   onClick={() => router.push(item.href)}
-                  className="flex w-full cursor-pointer items-center rounded-xl p-2.5 transition-all duration-200 focus:bg-zinc-100 dark:focus:bg-zinc-800/60 focus:**:text-zinc-900 dark:focus:**:text-zinc-100"
+                  className="flex w-full cursor-pointer items-center rounded-xl p-2.5 transition-all duration-200 focus:bg-primary/10 dark:focus:bg-primary/15 focus:**:!text-primary"
                 >
                   <div className="flex flex-1 items-center gap-3">
                     {React.cloneElement(item.icon as React.ReactElement, { className: "h-4 w-4 text-zinc-500 dark:text-zinc-400" })}
