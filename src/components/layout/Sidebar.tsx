@@ -74,7 +74,7 @@ export function Sidebar() {
       <div className="p-6 pb-2">
         <Link href="/" className="flex items-center gap-2 group mb-6">
           <div className="w-8 h-8 rounded-full bg-bcn-red flex items-center justify-center text-white shadow-sm transform group-hover:scale-105 transition-all">
-            <Link2 className="w-5 h-5 transform rotate-45" />
+            <Link2 className="w-5 h-5 transform rotate-45 group-hover:rotate-90 transition-transform duration-300" />
           </div>
           <span className="text-xl font-bold tracking-tight">BCN</span>
         </Link>
