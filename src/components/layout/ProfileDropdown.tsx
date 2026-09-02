@@ -1,7 +1,6 @@
 "use client";
 
 import { LogOut, Settings, LayoutDashboard, Building2, User } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 import {
@@ -27,8 +26,6 @@ export function ProfileDropdown({ className, ...props }: ProfileDropdownProps) {
   // Extract user info
   const name = user.user_metadata?.full_name || user.user_metadata?.first_name || "User";
   const email = user.email || "";
-  // In a real app we'd get the user's real avatar, falling back to a generated initial avatar
-  const avatar = user.user_metadata?.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random`;
 
   const menuItems = [
     {
@@ -53,16 +50,10 @@ export function ProfileDropdown({ className, ...props }: ProfileDropdownProps) {
       <DropdownMenu onOpenChange={setIsOpen}>
         <div className="group relative">
           <DropdownMenuTrigger
-            className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 p-1 pr-4 transition-all duration-200 hover:border-white/20 hover:bg-white/10 focus:outline-none h-10"
+            className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 p-1 pr-4 transition-all duration-200 hover:border-white/20 hover:bg-white/10 focus:outline-none h-10 data-open:bg-white/10 data-open:border-white/20"
           >
-            <div className="relative h-8 w-8 overflow-hidden rounded-full border border-white/20 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400">
-              <Image
-                alt={name}
-                className="h-full w-full object-cover"
-                height={32}
-                src={avatar}
-                width={32}
-              />
+            <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-gradient-to-br from-indigo-500 to-purple-600">
+              <User className="h-4 w-4 text-white" />
             </div>
             <div className="hidden sm:flex flex-col text-left">
               <span className="font-medium text-sm text-white leading-tight">
