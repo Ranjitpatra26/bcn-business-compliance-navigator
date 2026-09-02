@@ -45,6 +45,7 @@ export default function LoginPage() {
       // Simulate network request
       await new Promise(resolve => setTimeout(resolve, 800));
       toast.success("Successfully logged in! (Mock Mode)");
+      localStorage.setItem("bcn_mock_auth", "true");
       // Reload the page to reset the AuthProvider mock state so it gives us a user
       window.location.href = "/";
       return;
@@ -69,6 +70,7 @@ export default function LoginPage() {
   const handleGoogleSignIn = async () => {
     if (process.env.NEXT_PUBLIC_API_MODE === "mock" || process.env.NEXT_PUBLIC_API_MODE === "true") {
       toast.success("Successfully logged in with Google! (Mock Mode)");
+      localStorage.setItem("bcn_mock_auth", "true");
       window.location.href = "/";
       return;
     }

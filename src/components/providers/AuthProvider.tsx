@@ -32,9 +32,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const initializeAuth = async () => {
       try {
         if (process.env.NEXT_PUBLIC_API_MODE === "true" || process.env.NEXT_PUBLIC_API_MODE === "mock") {
-          // Bypass auth in mock mode
-          setSession({ access_token: "mock-token" } as Session);
-          setUser({ id: "mock-user", email: "demo@bcn.com" } as User);
+          // Bypass auth in mock mode only if they explicitly logged in
+          if (typeof window !== "undefined" && localStorage.getItem("bcn_mock_auth") === "true") {
+            setSession({ access_token: "mock-token" } as Session);
+            setUser({ id: "mock-user", email: "demo@bcn.com" } as User);
+          }
           setIsLoading(false);
           return;
         }
@@ -75,6 +77,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsLoggingOut(true);
     if (process.env.NEXT_PUBLIC_API_MODE !== "true" && process.env.NEXT_PUBLIC_API_MODE !== "mock") {
       await supabase.auth.signOut();
+    } else {
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("bcn_mock_auth");
+      }
     }
     setUser(null);
     setSession(null);
