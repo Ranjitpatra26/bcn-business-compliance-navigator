@@ -1,16 +1,14 @@
 import { QrCode } from "lucide-react";
-
+import Link from "next/link";
 export function Footer() {
   return (
     <footer className="mt-20">
       <div className="bg-bcn-black text-white rounded-[2.5rem] p-12 md:p-16 max-w-7xl mx-auto mb-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20 border-b border-white/20 pb-12">
           <div className="flex flex-wrap gap-8 text-lg">
-            <span className="text-white/60">About</span>
-            <span className="text-white/60">Why Us</span>
-            <span className="text-white/60">Platform</span>
-            <span className="text-white/60">Pricing</span>
-            <span className="text-white/60">Contacts</span>
+            <Link href="/about" className="text-white/60 hover:text-white transition-colors">About</Link>
+            <Link href="/why-us" className="text-white/60 hover:text-white transition-colors">Why Us</Link>
+            <Link href="/contact" className="text-white/60 hover:text-white transition-colors">Contacts</Link>
           </div>
           <div className="flex md:justify-end text-3xl md:text-5xl font-medium">
             hello@bcn.com
@@ -38,8 +36,8 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/20 pt-8">
           <h2 className="text-6xl md:text-8xl font-bold tracking-tighter">BCN<sup className="text-2xl md:text-4xl">®</sup></h2>
           <div className="flex items-center gap-8">
-            <span className="text-white/60 text-sm">Privacy policy</span>
-            <span className="text-white/60 text-sm">License agreement</span>
+            <Link href="/privacy" className="text-white/60 text-sm hover:text-white transition-colors">Privacy policy</Link>
+            <Link href="/license" className="text-white/60 text-sm hover:text-white transition-colors">License agreement</Link>
             <div className="bg-white rounded-xl p-2 hidden sm:block">
               <QrCode className="w-12 h-12 text-bcn-black" />
             </div>
