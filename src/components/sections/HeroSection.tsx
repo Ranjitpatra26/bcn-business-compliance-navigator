@@ -64,11 +64,11 @@ export function HeroSection() {
   useEffect(() => {
     if (!containerRef.current) return;
     
-    // GSAP ScrollTrigger to fade and translate only the background on scroll
+    // GSAP ScrollTrigger to fade and translate hero on scroll
     const ctx = gsap.context(() => {
-      gsap.to(".hero-bg-parallax", {
+      gsap.to(containerRef.current, {
         y: 150,
-        opacity: 0.3,
+        opacity: 0,
         scale: 0.95,
         ease: "none",
         scrollTrigger: {
@@ -87,7 +87,7 @@ export function HeroSection() {
     <section ref={containerRef} className="relative w-full pt-32 pb-36 lg:pb-40 flex flex-col items-center text-center overflow-hidden min-h-[90vh] justify-center">
       
       {/* High-End Cinematic BCN Trust & Regulatory Shield Background */}
-      <div className="hero-bg-parallax absolute inset-0 w-full h-full -z-20 overflow-hidden select-none pointer-events-none" aria-hidden="true">
+      <div className="absolute inset-0 w-full h-full -z-20 overflow-hidden select-none pointer-events-none" aria-hidden="true">
         <Image 
           src="/images/auth/bcn_trust_bg.jpg" 
           alt="BCN Enterprise Trust Architecture" 
@@ -185,7 +185,7 @@ export function HeroSection() {
             <div className="absolute inset-0 bg-bcn-red translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
           </Link>
           <Link
-            href="#how-it-works"
+            href="/how-it-works"
             className="inline-flex items-center justify-center rounded-full bg-white/80 backdrop-blur-md px-10 py-5 text-lg font-bold text-black border-2 border-muted hover:border-black transition-colors shadow-sm"
           >
             See How BCN Works
