@@ -22,9 +22,9 @@ export default function DashboardLayout({
       <div className="flex-1 flex flex-col min-w-0">
         {/* Mobile Header */}
         <header className="md:hidden flex items-center justify-between p-4 border-b bg-background sticky top-0 z-30">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-bcn-red flex items-center justify-center text-white">
-              <Link2 className="w-4 h-4 transform rotate-45" />
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="w-8 h-8 rounded-full bg-bcn-red flex items-center justify-center text-white shadow-sm transform group-hover:scale-105 transition-all">
+              <Link2 className="w-4 h-4 transform rotate-45 group-hover:rotate-90 transition-transform duration-300" />
             </div>
             <span className="font-bold tracking-tight">BCN</span>
           </Link>

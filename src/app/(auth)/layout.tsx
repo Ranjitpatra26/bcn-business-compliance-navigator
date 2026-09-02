@@ -11,7 +11,7 @@ export default function AuthLayout({
       <header className="p-6">
         <Link href="/" className="flex items-center gap-2 group max-w-fit">
           <div className="w-10 h-10 rounded-full bg-bcn-red flex items-center justify-center text-white shadow-sm transform group-hover:scale-105 transition-all">
-            <Link2 className="w-6 h-6 transform rotate-45" />
+            <Link2 className="w-6 h-6 transform rotate-45 group-hover:rotate-90 transition-transform duration-300" />
           </div>
           <span className="text-2xl font-bold tracking-tight">BCN</span>
         </Link>
