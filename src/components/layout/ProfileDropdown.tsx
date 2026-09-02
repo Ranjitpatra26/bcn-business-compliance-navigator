@@ -114,7 +114,7 @@ export function ProfileDropdown({ className, ...props }: ProfileDropdownProps) {
 
             <DropdownMenuItem
               onClick={() => signOut()}
-              className="group flex w-full cursor-pointer items-center gap-3 rounded-xl p-2.5 transition-all duration-200 focus:bg-red-50 dark:focus:bg-red-500/10 focus:**:text-red-600 text-red-500"
+              className="group flex w-full cursor-pointer items-center gap-3 rounded-xl p-2.5 transition-all duration-200 focus:bg-red-50 dark:focus:bg-red-500/10 focus:**:!text-red-600 dark:focus:**:!text-red-500 text-red-500"
             >
               <LogOut className="h-4 w-4" />
               <span className="font-medium text-sm">
