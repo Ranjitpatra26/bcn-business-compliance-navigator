@@ -1,8 +1,9 @@
-import { QrCode } from "lucide-react";
+import { QrCode, Linkedin, Instagram, Facebook } from "lucide-react";
 import Link from "next/link";
 export function Footer() {
   const topLinkStyle = "text-white/60 hover:text-white transition-colors relative pb-1 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-white after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-right hover:after:origin-left";
   const bottomLinkStyle = "text-white/60 text-sm hover:text-white transition-colors relative pb-1 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-white after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-right hover:after:origin-left";
+  const socialLinkStyle = "text-white/60 text-sm hover:text-white transition-colors relative pb-1 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-white after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-right hover:after:origin-left flex items-center gap-2 w-fit";
 
   return (
     <footer className="mt-20">
@@ -29,10 +30,19 @@ export function Footer() {
             <p className="text-white/60 text-sm">220 East Peterson Drive</p>
             <p className="text-white/60 text-sm">Charlotte, NC 28217</p>
           </div>
-          <div className="flex flex-col gap-2 md:text-right">
-            <span className="text-white/60 text-sm">LinkedIn</span>
-            <span className="text-white/60 text-sm">Instagram</span>
-            <span className="text-white/60 text-sm">Facebook</span>
+          <div className="flex flex-col gap-3 md:items-end">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={socialLinkStyle}>
+              <Linkedin className="w-4 h-4" />
+              LinkedIn
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={socialLinkStyle}>
+              <Instagram className="w-4 h-4" />
+              Instagram
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className={socialLinkStyle}>
+              <Facebook className="w-4 h-4" />
+              Facebook
+            </a>
           </div>
         </div>
         
