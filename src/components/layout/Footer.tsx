@@ -1,6 +1,7 @@
 import { QrCode } from "lucide-react";
 import { FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
 import Link from "next/link";
+import SocialButton from "@/components/ui/social-button";
 export function Footer() {
   const topLinkStyle = "text-white/60 hover:text-white transition-colors relative pb-1 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-white after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-right hover:after:origin-left";
   const bottomLinkStyle = "text-white/60 text-sm hover:text-white transition-colors relative pb-1 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-white after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-right hover:after:origin-left";
@@ -20,7 +21,7 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-20 items-center">
           <div>
             <h4 className="font-semibold mb-2">Ranjit Patra</h4>
             <p className="text-white/60 text-sm">Bandra Kurla Complex</p>
@@ -30,6 +31,9 @@ export function Footer() {
             <h4 className="font-semibold mb-2">Manthan Patil</h4>
             <p className="text-white/60 text-sm">Andheri East</p>
             <p className="text-white/60 text-sm">Mumbai, MH 400059</p>
+          </div>
+          <div className="flex justify-start md:justify-center">
+            <SocialButton />
           </div>
           <div className="flex flex-col gap-3 md:items-end">
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={socialLinkStyle}>
