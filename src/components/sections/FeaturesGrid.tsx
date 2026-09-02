@@ -76,7 +76,7 @@ export function FeaturesGrid({ extendedAnimation = false }: { extendedAnimation?
     <section ref={sectionRef} className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
       
       {/* Scroll Storytelling Header */}
-      <div ref={textContainerRef} className="relative h-[250px] mb-20 flex items-center justify-center text-center">
+      <div ref={textContainerRef} className={`relative h-[250px] flex items-center justify-center text-center ${extendedAnimation ? 'mb-20' : '-mt-12 mb-16'}`}>
         <h2 ref={text1Ref} className="absolute inset-0 flex flex-col items-center justify-center text-6xl md:text-8xl font-bold tracking-[-0.04em] text-muted-foreground leading-[0.9]">
           {extendedAnimation ? "MANUAL AUDITS ARE" : "COMPLIANCE IS"} <span className="font-serif italic text-bcn-black font-medium mt-2">{extendedAnimation ? "SLOW." : "COMPLEX."}</span>
         </h2>
