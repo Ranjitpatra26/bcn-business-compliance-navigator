@@ -119,15 +119,15 @@ export default function FeaturesPage() {
         </section>
 
         {/* Integration Grid */}
-        <section className="w-full bg-[#fff9f8] dark:bg-zinc-900/30 py-32 mb-32 border-y border-bcn-red/10 relative overflow-hidden">
+        <section className="w-full bg-[#fff9f8] py-32 mb-32 border-y border-bcn-red/10 relative overflow-hidden">
           {/* subtle background glow */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-bcn-red/5 rounded-full blur-[100px] pointer-events-none" />
           
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <div className="text-center mb-16">
               <div className="text-bcn-red font-bold tracking-wider text-sm uppercase mb-4">Seamless Connectivity</div>
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-4 text-zinc-900 dark:text-white">Integrate with your <span className="text-bcn-red">Stack</span></h2>
-              <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto text-lg">BCN connects directly to the tools you already use, pulling in data to verify compliance without manual entry.</p>
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-4 text-zinc-900">Integrate with your <span className="text-bcn-red">Stack</span></h2>
+              <p className="text-zinc-600 max-w-2xl mx-auto text-lg">BCN connects directly to the tools you already use, pulling in data to verify compliance without manual entry.</p>
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -138,9 +138,9 @@ export default function FeaturesPage() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, type: "spring", stiffness: 100 }}
-                  className="bg-white dark:bg-zinc-900 border border-bcn-red/10 rounded-2xl p-6 flex items-center justify-center shadow-sm hover:shadow-xl hover:shadow-bcn-red/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
+                  className="bg-white border border-bcn-red/10 rounded-2xl p-6 flex items-center justify-center shadow-sm hover:shadow-xl hover:shadow-bcn-red/10 transition-all duration-300 hover:-translate-y-1 cursor-pointer group"
                 >
-                  <span className="font-bold text-zinc-600 dark:text-zinc-400 group-hover:text-bcn-red transition-colors">{integration}</span>
+                  <span className="font-bold text-zinc-600 group-hover:text-bcn-red transition-colors">{integration}</span>
                 </motion.div>
               ))}
             </div>
