@@ -102,6 +102,9 @@ export function HeroSection() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-bcn-red/5 blur-[120px] rounded-full pointer-events-none" />
         {/* Seamless bottom fade into the next section */}
         <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-white via-white/80 to-transparent" />
+        {/* Seamless side fades */}
+        <div className="absolute top-0 left-0 w-32 md:w-64 h-full bg-gradient-to-r from-white via-white/80 to-transparent" />
+        <div className="absolute top-0 right-0 w-32 md:w-64 h-full bg-gradient-to-l from-white via-white/80 to-transparent" />
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
