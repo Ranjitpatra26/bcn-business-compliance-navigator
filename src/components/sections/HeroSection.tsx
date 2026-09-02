@@ -64,11 +64,11 @@ export function HeroSection() {
   useEffect(() => {
     if (!containerRef.current) return;
     
-    // GSAP ScrollTrigger to fade and translate hero on scroll
+    // GSAP ScrollTrigger to fade and translate only the background on scroll
     const ctx = gsap.context(() => {
-      gsap.to(containerRef.current, {
+      gsap.to(".hero-bg-parallax", {
         y: 150,
-        opacity: 0,
+        opacity: 0.3,
         scale: 0.95,
         ease: "none",
         scrollTrigger: {
@@ -87,7 +87,7 @@ export function HeroSection() {
     <section ref={containerRef} className="relative w-full pt-32 pb-36 lg:pb-40 flex flex-col items-center text-center overflow-hidden min-h-[90vh] justify-center">
       
       {/* High-End Cinematic BCN Trust & Regulatory Shield Background */}
-      <div className="absolute inset-0 w-full h-full -z-20 overflow-hidden select-none pointer-events-none" aria-hidden="true">
+      <div className="hero-bg-parallax absolute inset-0 w-full h-full -z-20 overflow-hidden select-none pointer-events-none" aria-hidden="true">
         <Image 
           src="/images/auth/bcn_trust_bg.jpg" 
           alt="BCN Enterprise Trust Architecture" 
