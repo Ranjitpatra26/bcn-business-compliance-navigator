@@ -22,14 +22,14 @@ export function Footer() {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           <div>
-            <h4 className="font-semibold mb-2">Raleigh</h4>
-            <p className="text-white/60 text-sm">125 N. Harrington Street</p>
-            <p className="text-white/60 text-sm">Raleigh, NC 27603</p>
+            <h4 className="font-semibold mb-2">Ranjit Patra</h4>
+            <p className="text-white/60 text-sm">Bandra Kurla Complex</p>
+            <p className="text-white/60 text-sm">Mumbai, MH 400051</p>
           </div>
           <div>
-            <h4 className="font-semibold mb-2">Charlotte</h4>
-            <p className="text-white/60 text-sm">220 East Peterson Drive</p>
-            <p className="text-white/60 text-sm">Charlotte, NC 28217</p>
+            <h4 className="font-semibold mb-2">Manthan Patil</h4>
+            <p className="text-white/60 text-sm">Andheri East</p>
+            <p className="text-white/60 text-sm">Mumbai, MH 400059</p>
           </div>
           <div className="flex flex-col gap-3 md:items-end">
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={socialLinkStyle}>
