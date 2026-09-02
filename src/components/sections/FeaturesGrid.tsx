@@ -60,7 +60,7 @@ export function FeaturesGrid({ extendedAnimation = false }: { extendedAnimation?
       // Storytelling text transitions
       tl.to(text1Ref.current, { opacity: 0, y: -20, duration: 1 })
         .to(text2Ref.current, { opacity: 1, y: 0, duration: 1 }, "-=0.5")
-        .to(text2Ref.current, { opacity: 0, y: -20, duration: 1 }, extendedAnimation ? "+=0.8" : "+=1")
+        .to(text2Ref.current, { opacity: 0, y: -20, duration: 1 }, extendedAnimation ? "+=0.8" : "+=0.2")
         .to(text3Ref.current, { opacity: 1, y: 0, duration: 1 }, "-=0.5");
         
       if (extendedAnimation) {
