@@ -114,8 +114,7 @@ export function Navbar() {
     { name: "Ask BCN", href: "/assistant" },
   ];
 
-  const isPublicPage = ["/", "/product", "/how-it-works", "/features"].includes(pathname);
-  const navLinks = isPublicPage ? publicLinks : authLinks;
+  const navLinks = user ? authLinks : publicLinks;
 
   return (
     <nav className="fixed top-6 left-0 right-0 z-50 px-4 sm:px-6 transition-all duration-300">
