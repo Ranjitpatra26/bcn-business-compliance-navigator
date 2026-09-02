@@ -94,7 +94,7 @@ export function HeroSection() {
           fill
           priority
           quality={90}
-          className="object-cover object-center opacity-85 sm:opacity-90"
+          className="object-cover object-center opacity-65 sm:opacity-75"
           sizes="100vw"
         />
         {/* Subtle gentle wash to preserve text contrast without obscuring the artwork */}
