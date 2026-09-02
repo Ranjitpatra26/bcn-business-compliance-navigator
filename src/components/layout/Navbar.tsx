@@ -29,7 +29,7 @@ function SuccessParticles({
             x: [0, (i % 2 ? 1 : -1) * (Math.random() * 50 + 20)],
             y: [0, -Math.random() * 50 - 20],
           }}
-          className="fixed h-1.5 w-1.5 rounded-full bg-white z-50 pointer-events-none"
+          className="fixed h-1.5 w-1.5 rounded-full bg-primary z-50 pointer-events-none"
           initial={{
             scale: 0,
             x: 0,
