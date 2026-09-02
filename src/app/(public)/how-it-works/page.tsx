@@ -30,6 +30,8 @@ export default function HowItWorksPage() {
     offset: ["start end", "end start"]
   });
 
+  const lineHeight = useTransform(scrollYProgress, [0.2, 0.8], ["0%", "100%"]);
+
   const textRevealVariants = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0, transition: { staggerChildren: 0.1, delayChildren: 0.2 } }
