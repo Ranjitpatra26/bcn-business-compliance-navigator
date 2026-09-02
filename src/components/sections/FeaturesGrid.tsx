@@ -78,13 +78,13 @@ export function FeaturesGrid({ extendedAnimation = false }: { extendedAnimation?
       {/* Scroll Storytelling Header */}
       <div ref={textContainerRef} className="relative h-[250px] mb-20 flex items-center justify-center text-center">
         <h2 ref={text1Ref} className="absolute inset-0 flex flex-col items-center justify-center text-6xl md:text-8xl font-bold tracking-[-0.04em] text-muted-foreground leading-[0.9]">
-          COMPLIANCE IS <span className="font-serif italic text-bcn-black font-medium mt-2">COMPLEX.</span>
+          {extendedAnimation ? "MANUAL AUDITS ARE" : "COMPLIANCE IS"} <span className="font-serif italic text-bcn-black font-medium mt-2">{extendedAnimation ? "SLOW." : "COMPLEX."}</span>
         </h2>
         <h2 ref={text2Ref} className="absolute inset-0 flex flex-col items-center justify-center text-6xl md:text-8xl font-bold tracking-[-0.04em] opacity-0 translate-y-10 leading-[0.9]">
-          YOUR BUSINESS IS <span className="font-serif italic text-bcn-red font-medium mt-2">UNIQUE.</span>
+          {extendedAnimation ? "REGULATORY RULES" : "YOUR BUSINESS IS"} <span className="font-serif italic text-bcn-red font-medium mt-2">{extendedAnimation ? "SHIFT." : "UNIQUE."}</span>
         </h2>
         <h2 ref={text3Ref} className="absolute inset-0 flex flex-col items-center justify-center text-6xl md:text-8xl font-bold tracking-[-0.04em] text-bcn-red opacity-0 translate-y-10 leading-[0.9]">
-          BCN CONNECTS <span className="font-serif italic text-bcn-black font-medium mt-2">THE TWO.</span>
+          {extendedAnimation ? "AUTOMATE WITH" : "BCN CONNECTS"} <span className="font-serif italic text-bcn-black font-medium mt-2">{extendedAnimation ? "BCN." : "THE TWO."}</span>
         </h2>
       </div>
 
