@@ -114,7 +114,8 @@ export function Navbar() {
     { name: "Ask BCN", href: "/assistant" },
   ];
 
-  const navLinks = user ? authLinks : publicLinks;
+  const isPublicPage = ["/", "/product", "/how-it-works", "/features"].includes(pathname);
+  const navLinks = isPublicPage ? publicLinks : authLinks;
 
   return (
     <nav className="fixed top-6 left-0 right-0 z-50 px-4 sm:px-6 transition-all duration-300">
@@ -128,7 +129,7 @@ export function Navbar() {
           </div>
           
           <div className="hidden md:flex items-center space-x-1">
-            {!isLoading && navLinks.map((link) => {
+            {navLinks.map((link) => {
               // Highlight active link, including sub-routes (e.g. /documents/123 highlights Documents)
               const isActive = link.href.startsWith('/') && link.href !== '/' 
                 ? pathname?.startsWith(link.href) 
@@ -162,7 +163,7 @@ export function Navbar() {
 
           <div className="flex items-center gap-4">
             {isLoading ? (
-              <div className="w-24 h-10 animate-pulse bg-white/10 rounded-full" />
+              <div className="w-10 h-10 rounded-full bg-white/10 animate-pulse" />
             ) : user ? (
               <ProfileDropdown />
             ) : (
