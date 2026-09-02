@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export function CtaSection() {
   return (
-    <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 flex flex-col items-center justify-center text-center bg-white rounded-[3rem] shadow-sm mb-32 border border-black/5 relative overflow-hidden">
+    <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 flex flex-col items-center justify-center text-center bg-white rounded-[3rem] shadow-sm mb-32 border border-black/10 relative overflow-hidden">
       {/* Subtle background glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-bcn-red/5 blur-[100px] pointer-events-none rounded-full" />
       
@@ -51,7 +51,7 @@ export function CtaSection() {
         className="flex flex-col sm:flex-row gap-4 relative z-10"
       >
         <Link href="/register">
-          <Button variant="secondary" className="rounded-full px-12 py-8 text-lg font-bold bg-muted hover:bg-muted/80 text-foreground transition-all">
+          <Button variant="secondary" className="rounded-full px-12 py-8 text-lg font-bold bg-muted hover:bg-muted/80 text-foreground transition-all hover:-translate-y-1 hover:shadow-lg">
             Request a demo
           </Button>
         </Link>
