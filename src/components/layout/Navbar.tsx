@@ -99,9 +99,9 @@ export function Navbar() {
   const { user } = useAuth();
 
   const publicLinks = [
-    { name: "Product", href: "#product" },
-    { name: "How it works", href: "#how-it-works" },
-    { name: "Features", href: "#features" },
+    { name: "Product", href: "/product" },
+    { name: "How it works", href: "/how-it-works" },
+    { name: "Features", href: "/features" },
   ];
 
   const authLinks = [
