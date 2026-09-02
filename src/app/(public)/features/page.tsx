@@ -62,11 +62,11 @@ export default function FeaturesPage() {
                  <div className="w-full bg-white dark:bg-zinc-950 rounded-xl shadow-sm border border-muted p-4 space-y-4">
                     <div className="flex gap-3">
                       <div className="w-8 h-8 rounded-full bg-bcn-red/10 flex items-center justify-center text-bcn-red text-xs font-bold">You</div>
-                      <div className="bg-muted/50 p-3 rounded-2xl rounded-tl-none text-sm w-3/4">Do we need SOC2 compliance for EU customers?</div>
+                      <div className="bg-muted/50 p-3 rounded-2xl rounded-tl-none text-sm w-3/4 text-zinc-800 dark:text-zinc-200">Do we need SOC2 compliance for EU customers?</div>
                     </div>
                     <div className="flex gap-3">
-                      <div className="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-white text-xs font-bold">AI</div>
-                      <div className="bg-bcn-red/5 border border-bcn-red/20 p-3 rounded-2xl rounded-tl-none text-sm w-5/6">
+                      <div className="w-8 h-8 rounded-full bg-zinc-900 dark:bg-zinc-100 flex items-center justify-center text-white dark:text-black text-xs font-bold">AI</div>
+                      <div className="bg-bcn-red/5 border border-bcn-red/20 p-3 rounded-2xl rounded-tl-none text-sm w-5/6 text-zinc-800 dark:text-zinc-200">
                         While SOC2 is highly recognized, EU customers typically prioritize GDPR compliance. However, achieving SOC2 Type II demonstrates strong data security controls...
                       </div>
                     </div>
@@ -101,15 +101,15 @@ export default function FeaturesPage() {
                  {/* Mock UI */}
                  <div className="w-full bg-white dark:bg-zinc-950 rounded-xl shadow-sm border border-muted p-6 space-y-6">
                     <div className="flex justify-between items-center border-b pb-4">
-                      <span className="font-semibold text-sm">AWS S3 Encryption</span>
+                      <span className="font-semibold text-sm text-zinc-800 dark:text-zinc-200">AWS S3 Encryption</span>
                       <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold">PASS</span>
                     </div>
                     <div className="flex justify-between items-center border-b pb-4">
-                      <span className="font-semibold text-sm">MFA Enforced</span>
+                      <span className="font-semibold text-sm text-zinc-800 dark:text-zinc-200">MFA Enforced</span>
                       <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold">PASS</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="font-semibold text-sm">Database Public Access</span>
+                      <span className="font-semibold text-sm text-zinc-800 dark:text-zinc-200">Database Public Access</span>
                       <span className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-bold">FAIL</span>
                     </div>
                  </div>
