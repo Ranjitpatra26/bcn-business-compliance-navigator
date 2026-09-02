@@ -86,20 +86,20 @@ export function HeroSection() {
   return (
     <section ref={containerRef} className="relative w-full pt-32 pb-36 lg:pb-40 flex flex-col items-center text-center overflow-hidden min-h-[90vh] justify-center">
       
-      {/* High-End Cinematic BCN Trust & Regulatory Shield Background */}
+      {/* Cinematic BCN Regulatory Intelligence & Clarity Highway Background */}
       <div className="absolute inset-0 w-full h-full -z-20 overflow-hidden select-none pointer-events-none" aria-hidden="true">
         <Image 
-          src="/images/auth/bcn_trust_bg.jpg" 
-          alt="BCN Enterprise Trust Architecture" 
+          src="/images/hero/bcn_hero_cinematic.jpg" 
+          alt="BCN Regulatory Intelligence Network Leading to Clarity" 
           fill
           priority
-          quality={90}
-          className="object-cover object-center opacity-85 sm:opacity-90"
+          quality={95}
+          className="object-cover object-center opacity-90 sm:opacity-95"
           sizes="100vw"
         />
-        {/* Subtle gentle wash to preserve text contrast without obscuring the artwork */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/35 via-white/15 to-white/70" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-bcn-red/5 blur-[120px] rounded-full pointer-events-none" />
+        {/* Soft atmospheric overlay ensuring high text readability while keeping the cinematic highway and glowing panels completely visible */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-white/70" />
+        <div className="absolute top-[42%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[950px] h-[500px] bg-white/55 blur-[85px] rounded-full pointer-events-none" />
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
@@ -151,7 +151,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-xl md:text-2xl text-muted-foreground max-w-2xl text-center mb-16 leading-relaxed font-medium"
+          className="text-xl md:text-2xl text-bcn-black/85 max-w-2xl text-center mb-16 leading-relaxed font-semibold drop-shadow-sm"
         >
           Navigate complex regulations with absolute confidence. The intelligent compliance engine built for modern businesses.
         </motion.p>
