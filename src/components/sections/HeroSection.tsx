@@ -86,20 +86,20 @@ export function HeroSection() {
   return (
     <section ref={containerRef} className="relative w-full pt-32 pb-36 lg:pb-40 flex flex-col items-center text-center overflow-hidden min-h-[90vh] justify-center">
       
-      {/* High-End Cinematic BCN Regulatory Intelligence Background */}
+      {/* High-End Cinematic BCN Trust & Regulatory Shield Background */}
       <div className="absolute inset-0 w-full h-full -z-20 overflow-hidden select-none pointer-events-none" aria-hidden="true">
         <Image 
-          src="/images/auth/bcn_workflow_bg.jpg" 
-          alt="BCN Regulatory Intelligence Network" 
+          src="/images/auth/bcn_trust_bg.jpg" 
+          alt="BCN Enterprise Trust Architecture" 
           fill
           priority
           quality={90}
-          className="object-cover object-center opacity-90 sm:opacity-95"
+          className="object-cover object-center opacity-85 sm:opacity-90"
           sizes="100vw"
         />
         {/* Subtle gentle wash to preserve text contrast without obscuring the artwork */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/10 to-white/60" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-bcn-red/5 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/35 via-white/15 to-white/70" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-bcn-red/5 blur-[120px] rounded-full pointer-events-none" />
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
