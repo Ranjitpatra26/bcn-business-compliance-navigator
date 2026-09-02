@@ -64,7 +64,7 @@ export async function updateSession(request: NextRequest) {
   if (user && isAuthRoute) {
     // user is already logged in, redirect them away from auth pages
     const url = request.nextUrl.clone()
-    url.pathname = '/dashboard' // Could be onboarding based on business status, but /dashboard handles that check
+    url.pathname = '/' // Could be onboarding based on business status, but home handles that check
     return NextResponse.redirect(url)
   }
 

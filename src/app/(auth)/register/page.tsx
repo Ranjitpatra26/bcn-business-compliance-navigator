@@ -53,7 +53,7 @@ export default function RegisterPage() {
       await new Promise(resolve => setTimeout(resolve, 800));
       toast.success("Account created successfully! (Mock Mode)");
       // Reload the page to reset the AuthProvider mock state so it gives us a user
-      window.location.href = "/dashboard";
+      window.location.href = "/";
       return;
     }
 
@@ -75,7 +75,7 @@ export default function RegisterPage() {
       toast.error(error.message);
     } else {
       toast.success("Account created successfully!");
-      router.push("/dashboard");
+      router.push("/");
       router.refresh();
     }
   }
@@ -83,7 +83,7 @@ export default function RegisterPage() {
   const handleGoogleSignIn = async () => {
     if (process.env.NEXT_PUBLIC_API_MODE === "mock" || process.env.NEXT_PUBLIC_API_MODE === "true") {
       toast.success("Successfully logged in with Google! (Mock Mode)");
-      window.location.href = "/dashboard";
+      window.location.href = "/";
       return;
     }
     

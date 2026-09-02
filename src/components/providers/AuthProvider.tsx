@@ -23,6 +23,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const supabase = createClient();
@@ -71,12 +72,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const signOut = async () => {
+    setIsLoggingOut(true);
     if (process.env.NEXT_PUBLIC_API_MODE !== "true" && process.env.NEXT_PUBLIC_API_MODE !== "mock") {
       await supabase.auth.signOut();
     }
     setUser(null);
     setSession(null);
-    router.push("/login");
+    router.push("/");
   };
 
   // Listen for unauthorized API errors
@@ -94,16 +96,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // Protect routes
   useEffect(() => {
-    if (isLoading) return;
+    if (isLoading || isLoggingOut) return;
     
     const isPublicRoute = ["/", "/login", "/register"].includes(pathname);
     
     if (!user && !isPublicRoute) {
       router.push("/login");
     } else if (user && ["/login", "/register"].includes(pathname)) {
-      router.push("/dashboard");
+      router.push("/");
     }
-  }, [user, isLoading, pathname, router]);
+  }, [user, isLoading, isLoggingOut, pathname, router]);
 
   return (
     <AuthContext.Provider value={{ user, session, isLoading, signOut }}>
