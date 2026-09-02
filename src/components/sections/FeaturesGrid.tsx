@@ -50,18 +50,17 @@ export function FeaturesGrid() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 20%",
-          end: "bottom 80%",
-          scrub: 1,
+          trigger: textContainerRef.current,
+          start: "top 75%",
+          toggleActions: "play none none reverse",
         }
       });
 
-      // Storytelling text transitions
-      tl.to(text1Ref.current, { opacity: 0, y: -20, duration: 1 })
-        .to(text2Ref.current, { opacity: 1, y: 0, duration: 1 }, "-=0.5")
-        .to(text2Ref.current, { opacity: 0, y: -20, duration: 1 }, "+=1")
-        .to(text3Ref.current, { opacity: 1, y: 0, duration: 1 }, "-=0.5");
+      // Storytelling text transitions - auto playing instead of scrubbed
+      tl.to(text1Ref.current, { opacity: 0, y: -20, duration: 0.6, delay: 1 })
+        .to(text2Ref.current, { opacity: 1, y: 0, duration: 0.6 })
+        .to(text2Ref.current, { opacity: 0, y: -20, duration: 0.6 }, "+=1.5")
+        .to(text3Ref.current, { opacity: 1, y: 0, duration: 0.6 });
         
     }, sectionRef);
 
