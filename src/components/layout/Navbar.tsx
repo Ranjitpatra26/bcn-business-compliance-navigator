@@ -182,7 +182,7 @@ export function Navbar() {
                   Get Started
                 </ParticleLink>
               </>
-            )}
+            ) : null}
           </div>
         </div>
       </div>
