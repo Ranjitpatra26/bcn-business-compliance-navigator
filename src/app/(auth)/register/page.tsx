@@ -64,8 +64,7 @@ export default function RegisterPage() {
       await new Promise(resolve => setTimeout(resolve, 800));
       toast.success("Account created successfully! (Mock Mode)");
       localStorage.setItem("bcn_mock_auth", "true");
-      router.push("/");
-      router.refresh();
+      window.location.href = "/dashboard";
       return;
     }
 
@@ -87,7 +86,7 @@ export default function RegisterPage() {
       toast.error(error.message);
     } else {
       toast.success("Account created successfully!");
-      router.push("/");
+      router.push("/dashboard");
       router.refresh();
     }
   }
@@ -97,8 +96,7 @@ export default function RegisterPage() {
     if (process.env.NEXT_PUBLIC_API_MODE === "mock" || process.env.NEXT_PUBLIC_API_MODE === "true") {
       toast.success("Successfully logged in with Google! (Mock Mode)");
       localStorage.setItem("bcn_mock_auth", "true");
-      router.push("/");
-      router.refresh();
+      window.location.href = "/dashboard";
       return;
     }
     
