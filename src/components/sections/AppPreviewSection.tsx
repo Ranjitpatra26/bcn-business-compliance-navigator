@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Play, ArrowRight, ShieldCheck, Search, CheckSquare, Target } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -12,27 +12,18 @@ if (typeof window !== "undefined") {
 
 export function AppPreviewSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const pathRef = useRef<SVGPathElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start center", "end center"]
+  });
+
+  const lineHeight = useTransform(scrollYProgress, [0, 0.8], ["0%", "100%"]);
 
   useEffect(() => {
-    if (!sectionRef.current || !pathRef.current) return;
-
-    // Scroll drawing SVG path
-    const length = pathRef.current.getTotalLength();
-    gsap.set(pathRef.current, { strokeDasharray: length, strokeDashoffset: length });
+    if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Animate the red line
-      gsap.to(pathRef.current, {
-        strokeDashoffset: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top center",
-          end: "bottom center",
-          scrub: 1,
-        }
-      });
 
       // Animate the workflow items
       gsap.fromTo(".workflow-item", 
@@ -74,22 +65,13 @@ export function AppPreviewSection() {
           </h2>
           
           <div className="relative pl-12 space-y-16 workflow-container">
-            {/* SVG Connecting Line */}
-            <svg 
-              className="absolute left-6 top-6 w-2 h-full z-0 overflow-visible" 
-              viewBox="0 0 2 600" 
-              fill="none" 
-              preserveAspectRatio="xMidYMin slice"
-            >
-              <line x1="1" y1="0" x2="1" y2="600" stroke="#e5e5e5" strokeWidth="2" strokeDasharray="4 4" />
-              <path 
-                ref={pathRef}
-                d="M1 0 L1 600" 
-                stroke="#DC2626" 
-                strokeWidth="4" 
-                className="transition-all"
+            {/* Animated Connecting Line */}
+            <div className="absolute left-[1.35rem] top-6 bottom-10 w-1 bg-muted rounded-full overflow-hidden z-0">
+              <motion.div 
+                style={{ height: lineHeight }} 
+                className="w-full bg-bcn-red origin-top"
               />
-            </svg>
+            </div>
 
             {workflowSteps.map((step, i) => (
               <div 
