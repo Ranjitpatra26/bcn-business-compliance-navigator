@@ -5,10 +5,11 @@ import { Link2 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { motion } from "framer-motion";
+import { ProfileDropdown } from "./ProfileDropdown";
 
 export function Navbar() {
   const pathname = usePathname();
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
 
   const publicLinks = [
     { name: "Product", href: "#product" },
@@ -69,12 +70,7 @@ export function Navbar() {
 
           <div className="flex items-center gap-4">
             {user ? (
-              <button 
-                onClick={signOut}
-                className="inline-flex shrink-0 items-center justify-center rounded-full border border-transparent bg-white/10 text-white hover:bg-white/20 text-sm font-bold tracking-wide transition-all h-10 px-6"
-              >
-                Logout
-              </button>
+              <ProfileDropdown />
             ) : (
               <>
                 <Link 
