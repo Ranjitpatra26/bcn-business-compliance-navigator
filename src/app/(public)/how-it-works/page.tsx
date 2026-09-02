@@ -136,7 +136,11 @@ export default function HowItWorksPage() {
                       )}
                       {index === 1 && (
                         <div className="grid grid-cols-2 gap-4 w-full">
-                          {[1,2,3,4].map(i => <div key={i} className="h-12 bg-muted/50 rounded-xl border border-muted flex items-center justify-center font-bold text-muted-foreground text-xs tracking-widest uppercase">Integration</div>)}
+                          {["AWS Cloud", "Google Workspace", "QuickBooks", "Stripe"].map((name, i) => (
+                            <div key={i} className="h-12 bg-muted/50 rounded-xl border border-muted flex items-center justify-center font-bold text-muted-foreground text-xs tracking-widest uppercase">
+                              {name}
+                            </div>
+                          ))}
                         </div>
                       )}
                       {index === 2 && (
