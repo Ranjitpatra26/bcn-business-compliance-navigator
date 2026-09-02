@@ -119,12 +119,15 @@ export default function FeaturesPage() {
         </section>
 
         {/* Integration Grid */}
-        <section className="w-full bg-zinc-50 dark:bg-zinc-900/50 py-32 mb-32 border-y border-muted/50">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <section className="w-full bg-zinc-950 text-white py-32 mb-32 border-y border-white/10 relative overflow-hidden">
+          {/* subtle background glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-bcn-red/5 rounded-full blur-[120px] pointer-events-none" />
+          
+          <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             <div className="text-center mb-16">
               <div className="text-bcn-red font-bold tracking-wider text-sm uppercase mb-4">Seamless Connectivity</div>
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-4">Integrate with your <span className="text-bcn-red">Stack</span></h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">BCN connects directly to the tools you already use, pulling in data to verify compliance without manual entry.</p>
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-4 text-white">Integrate with your <span className="text-bcn-red">Stack</span></h2>
+              <p className="text-zinc-400 max-w-2xl mx-auto text-lg">BCN connects directly to the tools you already use, pulling in data to verify compliance without manual entry.</p>
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -135,9 +138,9 @@ export default function FeaturesPage() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, type: "spring", stiffness: 100 }}
-                  className="bg-white dark:bg-card border border-muted/50 rounded-2xl p-6 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow hover:border-bcn-red/30 cursor-pointer group"
+                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 flex items-center justify-center shadow-lg hover:shadow-bcn-red/10 transition-all duration-300 hover:border-bcn-red/40 hover:bg-white/10 cursor-pointer group"
                 >
-                  <span className="font-bold text-muted-foreground group-hover:text-foreground transition-colors">{integration}</span>
+                  <span className="font-bold text-zinc-400 group-hover:text-white transition-colors">{integration}</span>
                 </motion.div>
               ))}
             </div>
