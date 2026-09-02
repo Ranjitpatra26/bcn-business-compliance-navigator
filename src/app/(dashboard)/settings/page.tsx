@@ -20,15 +20,27 @@ export default function SettingsPage() {
   const { user } = useAuth();
   
   const { activeBusinessId } = useActiveBusiness();
-  const [activeTab, setActiveTab] = useState<'account' | 'notifications'>('account');
+  const [activeTab, setActiveTab] = useState<'account' | 'notifications' | 'business'>('account');
   
   const { data: preferences, updatePreferences, isUpdating } = useNotificationPreferences(activeBusinessId);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   
-  // Local state for forms
+  // Local state for account form
   const [name, setName] = useState(user?.user_metadata?.full_name || "BCN User");
+  const [phone, setPhone] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
+  const [timezone, setTimezone] = useState("UTC");
   const [isSavingAccount, setIsSavingAccount] = useState(false);
   const [accountSuccess, setAccountSuccess] = useState(false);
+  
+  // Local state for business form
+  const [businessName, setBusinessName] = useState("Acme Corp");
+  const [registrationNumber, setRegistrationNumber] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [country, setCountry] = useState("");
+  const [isSavingBusiness, setIsSavingBusiness] = useState(false);
+  const [businessSuccess, setBusinessSuccess] = useState(false);
+
   const [prefSuccess, setPrefSuccess] = useState(false);
 
   const handleLogout = async () => {
@@ -53,6 +65,19 @@ export default function SettingsPage() {
       setIsSavingAccount(false);
       setAccountSuccess(true);
       setTimeout(() => setAccountSuccess(false), 3000);
+    }, 800);
+  };
+
+  const handleSaveBusiness = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSavingBusiness(true);
+    setBusinessSuccess(false);
+    
+    // Mock save logic for business profile
+    setTimeout(() => {
+      setIsSavingBusiness(false);
+      setBusinessSuccess(true);
+      setTimeout(() => setBusinessSuccess(false), 3000);
     }, 800);
   };
 
@@ -97,12 +122,14 @@ export default function SettingsPage() {
             <Bell className="w-4 h-4" /> Notifications
           </button>
 
-          <Link href="/business" className="w-full flex items-center justify-between gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors group">
-            <span className="flex items-center gap-3">
-              <Briefcase className="w-4 h-4" /> Business Profile
-            </span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
+          <button
+            onClick={() => setActiveTab('business')}
+            className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+              activeTab === 'business' ? "bg-bcn-red/10 text-bcn-red" : "text-muted-foreground hover:bg-muted hover:text-foreground"
+            }`}
+          >
+            <Briefcase className="w-4 h-4" /> Business Profile
+          </button>
           
           <div className="pt-4 mt-4 border-t border-muted/50">
             <button
@@ -126,36 +153,75 @@ export default function SettingsPage() {
                   <CardDescription>Update your personal information associated with BCN.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleSaveAccount} className="space-y-4 max-w-md">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
-                      <Input 
-                        id="name" 
-                        value={name} 
-                        onChange={(e) => setName(e.target.value)} 
-                        className="rounded-xl border-muted/50"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email Address</Label>
-                      <Input 
-                        id="email" 
-                        value={user?.email || ""} 
-                        disabled 
-                        className="rounded-xl border-muted/50 bg-muted/20"
-                      />
-                      <p className="text-[10px] text-muted-foreground">Email addresses cannot be changed directly. Contact support.</p>
+                  <form onSubmit={handleSaveAccount} className="space-y-4 max-w-2xl">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Full Name</Label>
+                        <Input 
+                          id="name" 
+                          value={name} 
+                          onChange={(e) => setName(e.target.value)} 
+                          className="rounded-xl border-muted/50"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email Address</Label>
+                        <Input 
+                          id="email" 
+                          value={user?.email || ""} 
+                          disabled 
+                          className="rounded-xl border-muted/50 bg-muted/20"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="phone">Phone Number</Label>
+                        <Input 
+                          id="phone" 
+                          placeholder="+1 (555) 000-0000"
+                          value={phone} 
+                          onChange={(e) => setPhone(e.target.value)} 
+                          className="rounded-xl border-muted/50"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="jobTitle">Job Title / Role</Label>
+                        <Input 
+                          id="jobTitle" 
+                          placeholder="e.g. Compliance Officer"
+                          value={jobTitle} 
+                          onChange={(e) => setJobTitle(e.target.value)} 
+                          className="rounded-xl border-muted/50"
+                        />
+                      </div>
+                      <div className="space-y-2 md:col-span-2">
+                        <Label htmlFor="timezone">Timezone</Label>
+                        <select 
+                          id="timezone" 
+                          value={timezone} 
+                          onChange={(e) => setTimezone(e.target.value)} 
+                          className="flex h-10 w-full rounded-xl border border-muted/50 bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        >
+                          <option value="UTC">UTC (Coordinated Universal Time)</option>
+                          <option value="EST">EST (Eastern Standard Time)</option>
+                          <option value="PST">PST (Pacific Standard Time)</option>
+                          <option value="GMT">GMT (Greenwich Mean Time)</option>
+                          <option value="CET">CET (Central European Time)</option>
+                        </select>
+                      </div>
                     </div>
                     
-                    <div className="pt-4 flex items-center gap-4">
-                      <Button type="submit" disabled={isSavingAccount || !name.trim()} className="bg-bcn-red text-white hover:bg-bcn-red/90 rounded-xl">
-                        {isSavingAccount ? "Saving..." : "Save Changes"}
-                      </Button>
-                      {accountSuccess && (
-                        <span className="text-sm font-medium text-green-600 flex items-center gap-1.5 animate-in fade-in">
-                          <CheckCircle2 className="w-4 h-4" /> Saved
-                        </span>
-                      )}
+                    <div className="pt-2">
+                      <p className="text-[10px] text-muted-foreground mb-4">Email addresses cannot be changed directly. Contact support.</p>
+                      <div className="flex items-center gap-4">
+                        <Button type="submit" disabled={isSavingAccount || !name.trim()} className="bg-bcn-red text-white hover:bg-bcn-red/90 rounded-xl">
+                          {isSavingAccount ? "Saving..." : "Save Changes"}
+                        </Button>
+                        {accountSuccess && (
+                          <span className="text-sm font-medium text-green-600 flex items-center gap-1.5 animate-in fade-in">
+                            <CheckCircle2 className="w-4 h-4" /> Saved
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </form>
                 </CardContent>
@@ -244,6 +310,77 @@ export default function SettingsPage() {
                     <CheckCircle2 className="w-4 h-4" /> Preferences saved
                   </div>
                 )}
+              </CardContent>
+            </Card>
+          )}
+
+          {activeTab === 'business' && (
+            <Card className="rounded-2xl shadow-sm border-muted/50 bg-card">
+              <CardHeader>
+                <CardTitle>Business Profile</CardTitle>
+                <CardDescription>Manage your company details, registration, and operating information for compliance purposes.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSaveBusiness} className="space-y-4 max-w-2xl">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2 md:col-span-2">
+                      <Label htmlFor="businessName">Company / Legal Name</Label>
+                      <Input 
+                        id="businessName" 
+                        placeholder="e.g. Acme Corporation" 
+                        value={businessName} 
+                        onChange={(e) => setBusinessName(e.target.value)} 
+                        className="rounded-xl border-muted/50" 
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="registrationNumber">Registration / Tax ID</Label>
+                      <Input 
+                        id="registrationNumber" 
+                        placeholder="e.g. EIN or Company Number" 
+                        value={registrationNumber} 
+                        onChange={(e) => setRegistrationNumber(e.target.value)} 
+                        className="rounded-xl border-muted/50" 
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="industry">Industry</Label>
+                      <select 
+                        id="industry" 
+                        value={industry} 
+                        onChange={(e) => setIndustry(e.target.value)} 
+                        className="flex h-10 w-full rounded-xl border border-muted/50 bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      >
+                        <option value="">Select an industry...</option>
+                        <option value="technology">Technology & Software</option>
+                        <option value="finance">Financial Services</option>
+                        <option value="healthcare">Healthcare & Pharmaceuticals</option>
+                        <option value="retail">Retail & E-commerce</option>
+                        <option value="manufacturing">Manufacturing</option>
+                      </select>
+                    </div>
+                    <div className="space-y-2 md:col-span-2">
+                      <Label htmlFor="country">Operating Country / Jurisdiction</Label>
+                      <Input 
+                        id="country" 
+                        placeholder="e.g. United States, United Kingdom" 
+                        value={country} 
+                        onChange={(e) => setCountry(e.target.value)} 
+                        className="rounded-xl border-muted/50" 
+                      />
+                    </div>
+                  </div>
+                  <div className="pt-4 flex items-center gap-4">
+                    <Button type="submit" disabled={isSavingBusiness || !businessName.trim()} className="bg-bcn-red text-white hover:bg-bcn-red/90 rounded-xl">
+                      {isSavingBusiness ? "Saving..." : "Save Business Profile"}
+                    </Button>
+                    {businessSuccess && (
+                      <span className="text-sm font-medium text-green-600 flex items-center gap-1.5 animate-in fade-in">
+                        <CheckCircle2 className="w-4 h-4" /> Profile Updated
+                      </span>
+                    )}
+                  </div>
+                </form>
               </CardContent>
             </Card>
           )}
