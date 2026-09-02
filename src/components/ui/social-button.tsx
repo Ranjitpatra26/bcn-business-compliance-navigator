@@ -1,7 +1,8 @@
 "use client";
 
 import { Link } from "lucide-react";
-import { FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -21,8 +22,8 @@ interface SocialButtonProps
 }
 
 const DEFAULT_SHARE_ITEMS: ShareItem[] = [
-  { icon: FaTwitter, label: "Share on Twitter" },
-  { icon: FaInstagram, label: "Share on Instagram" },
+  { icon: FaXTwitter, label: "Share on X" },
+  { icon: FaWhatsapp, label: "Share on WhatsApp" },
   { icon: FaLinkedin, label: "Share on LinkedIn" },
   { icon: Link, label: "Copy link" },
 ];
