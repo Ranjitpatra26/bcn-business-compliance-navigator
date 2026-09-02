@@ -96,7 +96,7 @@ function ParticleLink({
 
 export function Navbar() {
   const pathname = usePathname();
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
 
   const publicLinks = [
     { name: "Product", href: "/product" },
@@ -128,7 +128,7 @@ export function Navbar() {
           </div>
           
           <div className="hidden md:flex items-center space-x-1">
-            {navLinks.map((link) => {
+            {!isLoading && navLinks.map((link) => {
               // Highlight active link, including sub-routes (e.g. /documents/123 highlights Documents)
               const isActive = link.href.startsWith('/') && link.href !== '/' 
                 ? pathname?.startsWith(link.href) 
@@ -161,7 +161,9 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-4">
-            {user ? (
+            {isLoading ? (
+              <div className="w-24 h-10 animate-pulse bg-white/10 rounded-full" />
+            ) : user ? (
               <ProfileDropdown />
             ) : (
               <>
