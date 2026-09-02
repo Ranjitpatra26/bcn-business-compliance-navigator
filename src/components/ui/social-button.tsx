@@ -1,8 +1,7 @@
 "use client";
 
-import { Link } from "lucide-react";
+import { Link, FileText } from "lucide-react";
 import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -23,7 +22,7 @@ interface SocialButtonProps
 }
 
 const DEFAULT_SHARE_ITEMS: ShareItem[] = [
-  { icon: FaXTwitter, label: "Share on X" },
+  { icon: FileText, label: "Copy Info" },
   { icon: FaWhatsapp, label: "Share on WhatsApp" },
   { icon: FaLinkedin, label: "Share on LinkedIn" },
   { icon: Link, label: "Copy link" },
@@ -47,10 +46,11 @@ export default function SocialButton({
       onShare(index, item);
     } else {
       const url = typeof window !== "undefined" ? window.location.href : "https://bcn.com";
-      const text = "Check out BCN - Business Compliance Navigator";
+      const text = "Check out BCN - Business Compliance Navigator! We transform complex legal requirements into clear, actionable workflows, making regulatory compliance effortless for modern enterprises.";
       
-      if (item.label.includes("X")) {
-        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, "_blank");
+      if (item.label.includes("Copy Info")) {
+        navigator.clipboard.writeText(`${text}\n\nLearn more at: ${url}`);
+        toast.success("Project info & link copied!");
       } else if (item.label.includes("WhatsApp")) {
         window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text + " " + url)}`, "_blank");
       } else if (item.label.includes("LinkedIn")) {
