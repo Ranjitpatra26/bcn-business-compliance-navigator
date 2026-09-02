@@ -119,10 +119,19 @@ export default function HowItWorksPage() {
                     <div className="bg-card border border-muted/50 rounded-3xl p-6 shadow-xl aspect-video flex items-center justify-center relative overflow-hidden group">
                       <div className="absolute inset-0 bg-gradient-to-tr from-bcn-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       {index === 0 && (
-                        <div className="w-full space-y-4">
-                          <div className="h-4 bg-muted rounded w-1/3"></div>
-                          <div className="h-10 bg-muted/50 rounded w-full"></div>
-                          <div className="h-10 bg-muted/50 rounded w-full"></div>
+                        <div className="w-full space-y-4 text-left">
+                          <div className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2">Company Profile</div>
+                          <div className="space-y-1">
+                            <label className="text-[10px] text-muted-foreground font-semibold">Company Name</label>
+                            <div className="h-8 bg-muted/30 rounded border border-muted/50 flex items-center px-3 text-xs text-foreground font-medium">Acme Corp</div>
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-[10px] text-muted-foreground font-semibold">Industry</label>
+                            <div className="h-8 bg-muted/30 rounded border border-muted/50 flex items-center px-3 text-xs text-foreground font-medium">Financial Technology</div>
+                          </div>
+                          <div className="mt-2 pt-2 border-t border-muted/50 flex justify-end">
+                            <div className="bg-bcn-red text-white text-[10px] font-bold px-3 py-1.5 rounded-md">Save Profile</div>
+                          </div>
                         </div>
                       )}
                       {index === 1 && (
