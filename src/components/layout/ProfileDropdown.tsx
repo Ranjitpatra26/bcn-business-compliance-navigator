@@ -1,7 +1,7 @@
 "use client";
 
 import { LogOut, Settings, LayoutDashboard, Building2, User } from "lucide-react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import * as React from "react";
 import {
   DropdownMenu,
@@ -20,6 +20,7 @@ interface ProfileDropdownProps extends React.HTMLAttributes<HTMLDivElement> {
 export function ProfileDropdown({ className, ...props }: ProfileDropdownProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const { user, signOut } = useAuth();
+  const router = useRouter();
 
   if (!user) return null;
 
@@ -52,8 +53,8 @@ export function ProfileDropdown({ className, ...props }: ProfileDropdownProps) {
           <DropdownMenuTrigger
             className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 p-1 pr-4 transition-all duration-200 hover:border-white/20 hover:bg-white/10 focus:outline-none h-10 data-open:bg-white/10 data-open:border-white/20"
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-gradient-to-br from-indigo-500 to-purple-600">
-              <User className="h-4 w-4 text-white" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-zinc-800/80">
+              <User className="h-4 w-4 text-white/80" />
             </div>
             <div className="hidden sm:flex flex-col text-left">
               <span className="font-medium text-sm text-white leading-tight">
@@ -94,18 +95,18 @@ export function ProfileDropdown({ className, ...props }: ProfileDropdownProps) {
             
             <div className="space-y-1 py-1">
               {menuItems.map((item) => (
-                <Link href={item.href} key={item.label} className="block w-full outline-none">
-                  <DropdownMenuItem
-                    className="flex w-full cursor-pointer items-center rounded-xl p-2.5 transition-all duration-200 hover:bg-zinc-100 dark:hover:bg-zinc-800/60"
-                  >
-                    <div className="flex flex-1 items-center gap-3">
-                      {React.cloneElement(item.icon as React.ReactElement, { className: "h-4 w-4 text-zinc-500 dark:text-zinc-400" })}
-                      <span className="font-medium text-sm text-zinc-700 dark:text-zinc-300">
-                        {item.label}
-                      </span>
-                    </div>
-                  </DropdownMenuItem>
-                </Link>
+                <DropdownMenuItem
+                  key={item.label}
+                  onClick={() => router.push(item.href)}
+                  className="flex w-full cursor-pointer items-center rounded-xl p-2.5 transition-all duration-200 focus:bg-zinc-100 dark:focus:bg-zinc-800/60 focus:**:text-zinc-900 dark:focus:**:text-zinc-100"
+                >
+                  <div className="flex flex-1 items-center gap-3">
+                    {React.cloneElement(item.icon as React.ReactElement, { className: "h-4 w-4 text-zinc-500 dark:text-zinc-400" })}
+                    <span className="font-medium text-sm text-zinc-700 dark:text-zinc-300">
+                      {item.label}
+                    </span>
+                  </div>
+                </DropdownMenuItem>
               ))}
             </div>
 
@@ -113,7 +114,7 @@ export function ProfileDropdown({ className, ...props }: ProfileDropdownProps) {
 
             <DropdownMenuItem
               onClick={() => signOut()}
-              className="group flex w-full cursor-pointer items-center gap-3 rounded-xl p-2.5 transition-all duration-200 hover:bg-red-50 dark:hover:bg-red-500/10 text-red-500 hover:text-red-600"
+              className="group flex w-full cursor-pointer items-center gap-3 rounded-xl p-2.5 transition-all duration-200 focus:bg-red-50 dark:focus:bg-red-500/10 focus:**:text-red-600 text-red-500"
             >
               <LogOut className="h-4 w-4" />
               <span className="font-medium text-sm">
