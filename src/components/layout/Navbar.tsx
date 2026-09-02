@@ -2,10 +2,97 @@
 
 import Link from "next/link";
 import { Link2 } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/components/providers/AuthProvider";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ProfileDropdown } from "./ProfileDropdown";
+import { type RefObject, useRef, useState } from "react";
+
+function SuccessParticles({
+  buttonRef,
+}: {
+  buttonRef: React.RefObject<HTMLElement>;
+}) {
+  const rect = buttonRef.current?.getBoundingClientRect();
+  if (!rect) return null;
+
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+
+  return (
+    <AnimatePresence>
+      {[...Array(8)].map((_, i) => (
+        <motion.div
+          animate={{
+            scale: [0, 1, 0],
+            x: [0, (i % 2 ? 1 : -1) * (Math.random() * 50 + 20)],
+            y: [0, -Math.random() * 50 - 20],
+          }}
+          className="fixed h-1.5 w-1.5 rounded-full bg-white z-50 pointer-events-none"
+          initial={{
+            scale: 0,
+            x: 0,
+            y: 0,
+          }}
+          key={i}
+          style={{ left: centerX, top: centerY }}
+          transition={{
+            duration: 0.6,
+            delay: i * 0.1,
+            ease: "easeOut",
+          }}
+        />
+      ))}
+    </AnimatePresence>
+  );
+}
+
+function ParticleLink({
+  children,
+  href,
+  className,
+  ...props
+}: {
+  children: React.ReactNode;
+  href: string;
+  className?: string;
+}) {
+  const [showParticles, setShowParticles] = useState(false);
+  const buttonRef = useRef<HTMLAnchorElement>(null);
+  const router = useRouter();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setShowParticles(true);
+
+    setTimeout(() => {
+      setShowParticles(false);
+      router.push(href);
+    }, 400);
+  };
+
+  return (
+    <>
+      {showParticles && (
+        <SuccessParticles buttonRef={buttonRef as RefObject<HTMLElement>} />
+      )}
+      <Link
+        href={href}
+        className={cn(
+          className,
+          "transition-transform duration-100",
+          showParticles && "scale-95"
+        )}
+        onClick={handleClick}
+        ref={buttonRef}
+        {...props}
+      >
+        {children}
+      </Link>
+    </>
+  );
+}
 
 export function Navbar() {
   const pathname = usePathname();
@@ -80,16 +167,19 @@ export function Navbar() {
               <>
                 <Link 
                   href="/login"
-                  className="hidden sm:block text-sm font-bold tracking-wide text-white/80 hover:text-white transition-colors"
+                  className="group relative hidden sm:block text-sm font-bold tracking-wide text-white/80 hover:text-white transition-colors"
                 >
-                  Login
+                  <span className="relative z-10 inline-block">
+                    Login
+                    <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
+                  </span>
                 </Link>
-                <Link 
+                <ParticleLink 
                   href="/register"
                   className="inline-flex shrink-0 items-center justify-center rounded-full border border-transparent bg-white text-black hover:bg-white/90 text-sm font-bold tracking-wide transition-all h-10 px-6 shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:shadow-[0_0_25px_rgba(255,255,255,0.5)]"
                 >
                   Get Started
-                </Link>
+                </ParticleLink>
               </>
             )}
           </div>
