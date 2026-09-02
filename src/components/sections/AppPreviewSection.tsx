@@ -66,7 +66,7 @@ export function AppPreviewSection() {
           
           <div className="relative pl-12 space-y-16 workflow-container">
             {/* Animated Connecting Line */}
-            <div className="absolute left-[1.35rem] top-6 bottom-10 w-1 bg-muted rounded-full overflow-hidden z-0">
+            <div className="absolute left-[1.35rem] top-6 bottom-0 w-1 bg-muted rounded-full overflow-hidden z-0">
               <motion.div 
                 style={{ height: lineHeight }} 
                 className="w-full bg-bcn-red origin-top"
