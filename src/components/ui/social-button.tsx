@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 interface ShareItem {
   icon: React.ElementType;
@@ -40,7 +41,26 @@ export default function SocialButton({
 
   const handleShare = (index: number) => {
     setActiveIndex(index);
-    onShare?.(index, items[index]);
+    const item = items[index];
+    
+    if (onShare) {
+      onShare(index, item);
+    } else {
+      const url = typeof window !== "undefined" ? window.location.href : "https://bcn.com";
+      const text = "Check out BCN - Business Compliance Navigator";
+      
+      if (item.label.includes("X")) {
+        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, "_blank");
+      } else if (item.label.includes("WhatsApp")) {
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text + " " + url)}`, "_blank");
+      } else if (item.label.includes("LinkedIn")) {
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, "_blank");
+      } else if (item.label.includes("Copy")) {
+        navigator.clipboard.writeText(url);
+        toast.success("Link copied to clipboard!");
+      }
+    }
+    
     setTimeout(() => setActiveIndex(null), 300);
   };
 
