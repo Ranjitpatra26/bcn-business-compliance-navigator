@@ -37,7 +37,7 @@ const SpringCounter = ({ value, delay = 0, suffix = "" }: { value: number, delay
   );
 };
 
-export function FeaturesGrid() {
+export function FeaturesGrid({ extendedAnimation = false }: { extendedAnimation?: boolean }) {
   const sectionRef = useRef<HTMLElement>(null);
   const textContainerRef = useRef<HTMLDivElement>(null);
   const text1Ref = useRef<HTMLHeadingElement>(null);
@@ -51,8 +51,8 @@ export function FeaturesGrid() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
-          end: "top 15%",
+          start: extendedAnimation ? "top 75%" : "top 20%",
+          end: extendedAnimation ? "top 15%" : "bottom 80%",
           scrub: 1,
         }
       });
@@ -60,9 +60,12 @@ export function FeaturesGrid() {
       // Storytelling text transitions
       tl.to(text1Ref.current, { opacity: 0, y: -20, duration: 1 })
         .to(text2Ref.current, { opacity: 1, y: 0, duration: 1 }, "-=0.5")
-        .to(text2Ref.current, { opacity: 0, y: -20, duration: 1 }, "+=0.8")
-        .to(text3Ref.current, { opacity: 1, y: 0, duration: 1 }, "-=0.5")
-        .to({}, { duration: 1.5 }); // Hold the 3rd text on screen
+        .to(text2Ref.current, { opacity: 0, y: -20, duration: 1 }, extendedAnimation ? "+=0.8" : "+=1")
+        .to(text3Ref.current, { opacity: 1, y: 0, duration: 1 }, "-=0.5");
+        
+      if (extendedAnimation) {
+        tl.to({}, { duration: 1.5 }); // Hold the 3rd text on screen
+      }
         
     }, sectionRef);
 

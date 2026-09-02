@@ -30,7 +30,7 @@ export default function FeaturesPage() {
 
         {/* Existing Features Grid */}
         <div className="w-full mb-24">
-          <FeaturesGrid />
+          <FeaturesGrid extendedAnimation={true} />
         </div>
 
         {/* Deep Dive Feature Sections */}
