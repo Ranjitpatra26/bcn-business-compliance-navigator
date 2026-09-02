@@ -101,7 +101,7 @@ export function ProfileDropdown({ className, ...props }: ProfileDropdownProps) {
                   className="flex w-full cursor-pointer items-center rounded-xl p-2.5 transition-all duration-200 focus:bg-primary/10 dark:focus:bg-primary/15 focus:**:!text-primary"
                 >
                   <div className="flex flex-1 items-center gap-3">
-                    {React.cloneElement(item.icon as React.ReactElement, { className: "h-4 w-4 text-zinc-500 dark:text-zinc-400" })}
+                    {React.cloneElement(item.icon as React.ReactElement<{className?: string}>, { className: "h-4 w-4 text-zinc-500 dark:text-zinc-400" })}
                     <span className="font-medium text-sm text-zinc-700 dark:text-zinc-300">
                       {item.label}
                     </span>
