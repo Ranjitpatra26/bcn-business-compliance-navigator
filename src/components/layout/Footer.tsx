@@ -32,7 +32,7 @@ export function Footer() {
             <p className="text-white/60 text-sm">Andheri East</p>
             <p className="text-white/60 text-sm">Mumbai, MH 400059</p>
           </div>
-          <div className="flex justify-start md:justify-center">
+          <div className="flex justify-start md:justify-end md:pr-12">
             <SocialButton />
           </div>
           <div className="flex flex-col gap-3 md:items-end">
