@@ -1,4 +1,5 @@
-import { QrCode, Linkedin, Instagram, Facebook } from "lucide-react";
+import { QrCode } from "lucide-react";
+import { FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
 import Link from "next/link";
 export function Footer() {
   const topLinkStyle = "text-white/60 hover:text-white transition-colors relative pb-1 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-full after:bg-white after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300 after:origin-right hover:after:origin-left";
@@ -32,15 +33,15 @@ export function Footer() {
           </div>
           <div className="flex flex-col gap-3 md:items-end">
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className={socialLinkStyle}>
-              <Linkedin className="w-4 h-4" />
+              <FaLinkedin className="w-4 h-4" />
               LinkedIn
             </a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className={socialLinkStyle}>
-              <Instagram className="w-4 h-4" />
+              <FaInstagram className="w-4 h-4" />
               Instagram
             </a>
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className={socialLinkStyle}>
-              <Facebook className="w-4 h-4" />
+              <FaFacebook className="w-4 h-4" />
               Facebook
             </a>
           </div>
