@@ -51,7 +51,7 @@ export function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`relative px-4 py-2 text-sm font-bold tracking-wide transition-colors rounded-full ${
+                  className={`group relative px-4 py-2 text-sm font-bold tracking-wide transition-colors rounded-full ${
                     isActive ? "text-black" : "text-white/70 hover:text-white"
                   }`}
                 >
@@ -62,7 +62,12 @@ export function Navbar() {
                       transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     />
                   )}
-                  <span className="relative z-10">{link.name}</span>
+                  <span className="relative z-10 inline-block">
+                    {link.name}
+                    {!isActive && (
+                      <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
+                    )}
+                  </span>
                 </Link>
               );
             })}
