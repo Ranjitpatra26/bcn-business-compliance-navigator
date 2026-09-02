@@ -52,40 +52,37 @@ export function ProfileDropdown({ className, ...props }: ProfileDropdownProps) {
     <div className={cn("relative", className)} {...props}>
       <DropdownMenu onOpenChange={setIsOpen}>
         <div className="group relative">
-          <DropdownMenuTrigger asChild>
-            <button
-              className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 p-1 pr-4 transition-all duration-200 hover:border-white/20 hover:bg-white/10 focus:outline-none h-10"
-              type="button"
+          <DropdownMenuTrigger
+            className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 p-1 pr-4 transition-all duration-200 hover:border-white/20 hover:bg-white/10 focus:outline-none h-10"
+          >
+            <div className="relative h-8 w-8 overflow-hidden rounded-full border border-white/20 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400">
+              <Image
+                alt={name}
+                className="h-full w-full object-cover"
+                height={32}
+                src={avatar}
+                width={32}
+              />
+            </div>
+            <div className="hidden sm:flex flex-col text-left">
+              <span className="font-medium text-sm text-white leading-tight">
+                {name}
+              </span>
+            </div>
+            
+            <svg
+              aria-hidden="true"
+              className={cn(
+                "ml-1 h-4 w-4 transition-transform duration-200 text-white/50",
+                isOpen ? "rotate-180 text-white" : ""
+              )}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth="2"
             >
-              <div className="relative h-8 w-8 overflow-hidden rounded-full border border-white/20 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400">
-                <Image
-                  alt={name}
-                  className="h-full w-full object-cover"
-                  height={32}
-                  src={avatar}
-                  width={32}
-                />
-              </div>
-              <div className="hidden sm:flex flex-col text-left">
-                <span className="font-medium text-sm text-white leading-tight">
-                  {name}
-                </span>
-              </div>
-              
-              <svg
-                aria-hidden="true"
-                className={cn(
-                  "ml-1 h-4 w-4 transition-transform duration-200 text-white/50",
-                  isOpen ? "rotate-180 text-white" : ""
-                )}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
           </DropdownMenuTrigger>
 
           <DropdownMenuContent
@@ -106,10 +103,9 @@ export function ProfileDropdown({ className, ...props }: ProfileDropdownProps) {
             
             <div className="space-y-1 py-1">
               {menuItems.map((item) => (
-                <DropdownMenuItem asChild key={item.label}>
-                  <Link
-                    className="flex cursor-pointer items-center rounded-xl p-2.5 transition-all duration-200 hover:bg-zinc-100 dark:hover:bg-zinc-800/60"
-                    href={item.href}
+                <Link href={item.href} key={item.label} className="block w-full outline-none">
+                  <DropdownMenuItem
+                    className="flex w-full cursor-pointer items-center rounded-xl p-2.5 transition-all duration-200 hover:bg-zinc-100 dark:hover:bg-zinc-800/60"
                   >
                     <div className="flex flex-1 items-center gap-3">
                       {React.cloneElement(item.icon as React.ReactElement, { className: "h-4 w-4 text-zinc-500 dark:text-zinc-400" })}
@@ -117,24 +113,21 @@ export function ProfileDropdown({ className, ...props }: ProfileDropdownProps) {
                         {item.label}
                       </span>
                     </div>
-                  </Link>
-                </DropdownMenuItem>
+                  </DropdownMenuItem>
+                </Link>
               ))}
             </div>
 
             <DropdownMenuSeparator className="my-1 bg-zinc-200 dark:bg-zinc-800" />
 
-            <DropdownMenuItem asChild>
-              <button
-                onClick={() => signOut()}
-                className="group flex w-full cursor-pointer items-center gap-3 rounded-xl p-2.5 transition-all duration-200 hover:bg-red-50 dark:hover:bg-red-500/10"
-                type="button"
-              >
-                <LogOut className="h-4 w-4 text-red-500 group-hover:text-red-600" />
-                <span className="font-medium text-red-500 text-sm group-hover:text-red-600">
-                  Sign Out
-                </span>
-              </button>
+            <DropdownMenuItem
+              onClick={() => signOut()}
+              className="group flex w-full cursor-pointer items-center gap-3 rounded-xl p-2.5 transition-all duration-200 hover:bg-red-50 dark:hover:bg-red-500/10 text-red-500 hover:text-red-600"
+            >
+              <LogOut className="h-4 w-4" />
+              <span className="font-medium text-sm">
+                Sign Out
+              </span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </div>
