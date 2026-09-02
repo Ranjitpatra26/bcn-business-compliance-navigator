@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useSpring, useMotionValue, useMotionValueEvent } from "framer-motion";
 import { Play, Zap, BarChart2, ArrowRight, Activity, ShieldAlert, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
@@ -83,17 +84,25 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-40 flex flex-col items-center text-center overflow-hidden min-h-[90vh] justify-center">
+    <section ref={containerRef} className="relative w-full pt-32 pb-36 lg:pb-40 flex flex-col items-center text-center overflow-hidden min-h-[90vh] justify-center">
       
-      {/* Background ambient gradient and image */}
-      <div className="absolute inset-0 w-full h-full -z-20 overflow-hidden opacity-30 pointer-events-none">
-        <img 
-          src="/hero_compliance_abstract_1788220383990.jpg" 
-          alt="Abstract compliance theme" 
-          className="w-full h-full object-cover blur-md scale-110 opacity-40 mix-blend-multiply" 
+      {/* High-End Cinematic BCN Regulatory Intelligence Background */}
+      <div className="absolute inset-0 w-full h-full -z-20 overflow-hidden select-none pointer-events-none" aria-hidden="true">
+        <Image 
+          src="/images/auth/bcn_workflow_bg.jpg" 
+          alt="BCN Regulatory Intelligence Network" 
+          fill
+          priority
+          quality={90}
+          className="object-cover object-center opacity-90 sm:opacity-95"
+          sizes="100vw"
         />
+        {/* Subtle gentle wash to preserve text contrast without obscuring the artwork */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/10 to-white/60" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-bcn-red/5 blur-[120px] rounded-full pointer-events-none" />
       </div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-bcn-red/5 blur-[120px] rounded-full pointer-events-none -z-10" />
+
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
 
       <motion.div
         initial={{ y: 30, opacity: 0 }}
@@ -178,6 +187,7 @@ export function HeroSection() {
           </Link>
         </motion.div>
       </motion.div>
+      </div>
     </section>
   );
 }
